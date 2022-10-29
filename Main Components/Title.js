@@ -1,10 +1,35 @@
-import { View, Text, StyleSheet } from "react-native";
+import { Pressable, Text, StyleSheet } from "react-native";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { useState } from "react";
 
 export default function Title(props) {
+  const [bo, setBo] = useState(false);
   return (
-    <View style={styles.box}>
+    <Pressable
+      style={styles.box}
+      onPress={() => {
+        if (bo == false) {
+          setBo(true);
+        } else {
+          setBo(false);
+        }
+      }}
+    >
       <Text style={styles.name}>{props.name}</Text>
-    </View>
+      {bo ? (
+        <MaterialIcons
+          name="keyboard-arrow-up"
+          color={"white"}
+          size={20}
+        ></MaterialIcons>
+      ) : (
+        <MaterialIcons
+          name="keyboard-arrow-down"
+          color={"white"}
+          size={20}
+        ></MaterialIcons>
+      )}
+    </Pressable>
   );
 }
 
@@ -13,11 +38,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#00539CFF",
     margin: 10,
     padding: 8,
+    marginBottom: 0,
     borderRadius: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   name: {
     color: "white",
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: "bold",
   },
 });

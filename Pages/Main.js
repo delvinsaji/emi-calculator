@@ -11,7 +11,7 @@ export default function Main() {
       <Title name={"Fixed Obligation to Income Ratio (FOIR)"}></Title>
       <Title name={"Loan to Value"}></Title>
       <Title name={"FOIR + LTV"}></Title>
-      <Title name={"FLIP/ STEP UP"}></Title>
+      <Title name={"FLIP/STEP UP"}></Title>
     </SafeAreaView>
   );
 }

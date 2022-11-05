@@ -1,4 +1,4 @@
-import { Pressable, Text, StyleSheet, View } from "react-native";
+import { Pressable, Text, StyleSheet, View, FlatList } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useState } from "react";
 import Subcomp from "./Subcomp";
@@ -6,6 +6,12 @@ import data from "../Data";
 
 export default function Title(props) {
   const [bo, setBo] = useState(false);
+  const da = data[props.name];
+  console.log(da);
+  function renderItem(item) {
+    return <Subcomp name={item}></Subcomp>;
+  }
+
   return (
     <View>
       <Pressable
@@ -35,11 +41,18 @@ export default function Title(props) {
       </Pressable>
       {bo ? (
         <View style={styles.subcomp}>
-          {data[props.name].map((obj) => (
-            <Subcomp name={obj}></Subcomp>
-          ))}
+          <FlatList
+            data={da}
+            renderItem={renderItem}
+            keyExtractor={(item) => item}
+          ></FlatList>
         </View>
       ) : (
+        // <View style={styles.subcomp}>
+        //   {data[props.name].map((obj) => (
+        //     <Subcomp name={obj}></Subcomp>
+        //   ))}
+        // </View>
         ""
       )}
     </View>

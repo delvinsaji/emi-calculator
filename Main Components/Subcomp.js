@@ -1,14 +1,23 @@
-import { View, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
 export default function Subcomp(props) {
   return (
-    <View style={styles.box}>
+    <TouchableOpacity style={styles.box}>
       <Text style={styles.text}>{props.name}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  box: { height: 20, width: "100%", borderRightWidth: 1 },
+  box: {
+    width: 80,
+    borderRightWidth: 1,
+    backgroundColor: "blue",
+    margin: 10,
+    height: 70,
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   text: {},
 });

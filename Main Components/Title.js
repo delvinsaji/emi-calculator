@@ -6,11 +6,6 @@ import data from "../Data";
 
 export default function Title(props) {
   const [bo, setBo] = useState(false);
-  const da = data[props.name];
-  console.log(da);
-  function renderItem(item) {
-    return <Subcomp name={item}></Subcomp>;
-  }
 
   return (
     <View>
@@ -41,18 +36,11 @@ export default function Title(props) {
       </Pressable>
       {bo ? (
         <View style={styles.subcomp}>
-          <FlatList
-            data={da}
-            renderItem={renderItem}
-            keyExtractor={(item) => item}
-          ></FlatList>
+          {data[props.name].map((obj) => (
+            <Subcomp name={obj}></Subcomp>
+          ))}
         </View>
       ) : (
-        // <View style={styles.subcomp}>
-        //   {data[props.name].map((obj) => (
-        //     <Subcomp name={obj}></Subcomp>
-        //   ))}
-        // </View>
         ""
       )}
     </View>
@@ -77,5 +65,8 @@ const styles = StyleSheet.create({
   subcomp: {
     marginLeft: 10,
     marginRight: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

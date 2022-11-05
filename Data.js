@@ -1,4 +1,4 @@
-data = {
+const data = {
   "Loan Calculator": ["EMI", "Loan Amount", "Interest rate", "Tenor/Duration"],
   "Moratorium Calculator/EMI Deferment": ["EMI Change", "Tenor Change"],
   Comparison: ["Loan"],
@@ -32,3 +32,5 @@ data = {
     "Based on First FOIR",
   ],
 };
+
+export default data;

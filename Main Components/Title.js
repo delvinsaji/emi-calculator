@@ -34,7 +34,7 @@ export default function Title(props) {
         )}
       </Pressable>
       {bo ? (
-        <View>
+        <View style={styles.subcomp}>
           {data[props.name].map((obj) => (
             <Subcomp name={obj}></Subcomp>
           ))}
@@ -60,5 +60,9 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 15,
     fontWeight: "bold",
+  },
+  subcomp: {
+    marginLeft: 10,
+    marginRight: 10,
   },
 });

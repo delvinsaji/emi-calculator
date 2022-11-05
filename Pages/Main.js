@@ -6,7 +6,7 @@ export default function Main() {
     <SafeAreaView style={styles.container}>
       <Title name={"Loan Calculator"}></Title>
       <Title name={"Moratorium Calculator/EMI Deferment"}></Title>
-      <Title name={"Comaprison"}></Title>
+      <Title name={"Comparison"}></Title>
       <Title name={"Change Terms (Before Closure)"}></Title>
       <Title name={"Fixed Obligation to Income Ratio (FOIR)"}></Title>
       <Title name={"Loan to Value"}></Title>

@@ -6,7 +6,7 @@ import data from "../Data";
 
 export default function Title(props) {
   const [bo, setBo] = useState(false);
-
+  const rows = Math.floor(data[props.name].length / 4) + 1;
   return (
     <View>
       <Pressable
@@ -35,10 +35,17 @@ export default function Title(props) {
         )}
       </Pressable>
       {bo ? (
-        <View style={styles.subcomp}>
-          {data[props.name].map((obj) => (
-            <Subcomp name={obj}></Subcomp>
-          ))}
+        <View>
+          <View style={styles.subcomp}>
+            {data[props.name].slice(0, 4).map((obj) => {
+              return <Subcomp name={obj}></Subcomp>;
+            })}
+          </View>
+          <View style={styles.subcomp}>
+            {data[props.name].slice(4, 8).map((obj) => {
+              return <Subcomp name={obj}></Subcomp>;
+            })}
+          </View>
         </View>
       ) : (
         ""
@@ -64,9 +71,9 @@ const styles = StyleSheet.create({
   },
   subcomp: {
     marginLeft: 10,
-    marginRight: 10,
+    marginRight: 30,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
 });

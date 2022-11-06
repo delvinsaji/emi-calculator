@@ -10,7 +10,7 @@ export default function Subcomp(props) {
 
 const styles = StyleSheet.create({
   box: {
-    width: 80,
+    width: "20%",
     borderRightWidth: 1,
     backgroundColor: "blue",
     margin: 10,
@@ -19,5 +19,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  text: {},
+  text: {
+    color: "white",
+  },
 });

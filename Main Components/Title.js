@@ -37,12 +37,12 @@ export default function Title(props) {
       {bo ? (
         <View>
           <View style={styles.subcomp}>
-            {data[props.name].slice(0, 4).map((obj) => {
+            {data[props.name].slice(0, 4).map((obj, index) => {
               return <Subcomp name={obj}></Subcomp>;
             })}
           </View>
           <View style={styles.subcomp}>
-            {data[props.name].slice(4, 8).map((obj) => {
+            {data[props.name].slice(4, 8).map((obj, index) => {
               return <Subcomp name={obj}></Subcomp>;
             })}
           </View>

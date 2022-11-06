@@ -1,26 +1,18 @@
-import { SafeAreaView, Text, StyleSheet, ScrollView } from "react-native";
-import Title from "../Main Components/Title";
+import { createStackNavigator } from "@react-navigation/stack";
+import Mainpage from "./Mainpage";
+import EMI from "./EMI";
+
+const Stack = createStackNavigator();
 
 export default function Main() {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <Title name={"Loan Calculator"}></Title>
-        <Title name={"Moratorium Calculator/EMI Deferment"}></Title>
-        <Title name={"Comparison"}></Title>
-        <Title name={"Change Terms (Before Closure)"}></Title>
-        <Title name={"Fixed Obligation to Income Ratio (FOIR)"}></Title>
-        <Title name={"Loan to Value"}></Title>
-        <Title name={"FOIR + LTV"}></Title>
-        <Title name={"FLIP/STEP UP"}></Title>
-      </ScrollView>
-    </SafeAreaView>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Main" component={Mainpage}></Stack.Screen>
+      <Stack.Screen name="EMI" component={EMI}></Stack.Screen>
+    </Stack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#EEA47FFF",
-  },
-});

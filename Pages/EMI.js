@@ -1,9 +1,10 @@
 import { View, Text, TextInput, Button } from "react-native";
 import { StyleSheet } from "react-native";
+import Globalstyle from "../Global";
 
 export default function EMI() {
   return (
-    <View>
+    <View style={Globalstyle.container}>
       <Text>Loan Amount</Text>
       <TextInput></TextInput>
       <Text>Rate of Interest</Text>

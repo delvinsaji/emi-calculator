@@ -38,12 +38,12 @@ export default function Title(props) {
         <View>
           <View style={styles.subcomp}>
             {data[props.name].slice(0, 4).map((obj, index) => {
-              return <Subcomp name={obj}></Subcomp>;
+              return <Subcomp name={obj} nav={props.nav}></Subcomp>;
             })}
           </View>
           <View style={styles.subcomp}>
             {data[props.name].slice(4, 8).map((obj, index) => {
-              return <Subcomp name={obj}></Subcomp>;
+              return <Subcomp name={obj} nav={props.nav}></Subcomp>;
             })}
           </View>
         </View>

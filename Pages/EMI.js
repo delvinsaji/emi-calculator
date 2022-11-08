@@ -18,6 +18,7 @@ export default function EMI() {
   const [emi, setEmi] = useState("");
   const [total, setTotal] = useState("");
   const [totalint, setTotalint] = useState("");
+  const [state, setState] = useState(false);
 
   return (
     <SafeAreaView style={Globalstyle.container}>
@@ -51,12 +52,12 @@ export default function EMI() {
             setTenor(e);
           }}
         ></TextInput>
-        <View>
+        <TouchableOpacity>
           <Text>YR</Text>
-        </View>
-        <View>
+        </TouchableOpacity>
+        <TouchableOpacity>
           <Text>MT</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.butview}>
         <TouchableOpacity
@@ -72,6 +73,7 @@ export default function EMI() {
                   (Math.pow(1 + a, tenor) / (Math.pow(1 + a, tenor) - 1))
               );
             }
+            setState(true);
           }}
         >
           <Text>CALCULATE</Text>
@@ -82,11 +84,24 @@ export default function EMI() {
             setAmount("");
             setTenor("");
             setInterest("");
+            setState(false);
           }}
         >
           <Text>RESET</Text>
         </TouchableOpacity>
       </View>
+      {state ? (
+        <View style={styles.result}>
+          <Text>EMI(Monthly Payment)</Text>
+          <Text>{emi}</Text>
+          <Text>Total Payment</Text>
+          <Text>{total}</Text>
+          <Text>Total Interest</Text>
+          <Text>{totalint}</Text>
+        </View>
+      ) : (
+        ""
+      )}
     </SafeAreaView>
   );
 }
@@ -130,5 +145,11 @@ const styles = StyleSheet.create({
   },
   tenor: {
     flexDirection: "row",
+  },
+  result: {
+    textAlign: "center",
+    borderRadius: 5,
+    backgroundColor: "blue",
+    color: "white",
   },
 });

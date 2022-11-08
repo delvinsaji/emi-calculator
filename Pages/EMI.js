@@ -7,10 +7,16 @@ import {
 } from "react-native";
 import { StyleSheet } from "react-native";
 import Globalstyle from "../Global";
+import quotes from "../Quotes";
 
 export default function EMI() {
   return (
     <SafeAreaView style={Globalstyle.container}>
+      <View style={styles.quotebox}>
+        <Text style={styles.quote}>
+          {quotes[Math.floor(Math.random(0, 1) * quotes.length)]}
+        </Text>
+      </View>
       <Text style={styles.inputhead}>Loan Amount</Text>
       <TextInput style={styles.input}></TextInput>
       <Text style={styles.inputhead}>Rate of Interest</Text>
@@ -44,6 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 30,
   },
   input: {
     borderBottomWidth: 2,
@@ -55,5 +62,12 @@ const styles = StyleSheet.create({
   },
   inputhead: {
     margin: 20,
+  },
+  quote: {
+    margin: 25,
+    textAlign: "center",
+  },
+  quotebox: {
+    height: 120,
   },
 });

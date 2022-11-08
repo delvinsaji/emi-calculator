@@ -14,7 +14,7 @@ export default function EMI() {
   const [amount, setAmount] = useState("");
   const [interest, setInterest] = useState("");
   const [tenor, setTenor] = useState("");
-  const [mode, setMode] = useState("");
+  const [mode, setMode] = useState("YR");
   const [emi, setEmi] = useState("");
   const [total, setTotal] = useState("");
   const [totalint, setTotalint] = useState("");
@@ -52,10 +52,20 @@ export default function EMI() {
             setTenor(e);
           }}
         ></TextInput>
-        <TouchableOpacity>
+        <TouchableOpacity
+          style={styles.mode1}
+          onPress={() => {
+            setMode("YR");
+          }}
+        >
           <Text>YR</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          style={styles.mode2}
+          onPress={() => {
+            setMode("MT");
+          }}
+        >
           <Text>MT</Text>
         </TouchableOpacity>
       </View>
@@ -66,11 +76,13 @@ export default function EMI() {
             if ((amount === "") | (tenor === "") | (interest === "")) {
               alert("Please fill the given details");
             } else {
+              let ten = tenor;
+              if (mode == "YR") {
+                let ten = tenor * 12;
+              }
               let a = (interest * 0.01) / 12;
               setEmi(
-                amount *
-                  a *
-                  (Math.pow(1 + a, tenor) / (Math.pow(1 + a, tenor) - 1))
+                amount * a * (Math.pow(1 + a, ten) / (Math.pow(1 + a, ten) - 1))
               );
             }
             setState(true);
@@ -151,5 +163,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: "blue",
     color: "white",
+  },
+  mode1: {
+    backgroundColor: mode == "YR" ? "grey" : "",
+  },
+  mode2: {
+    backgroundColor: mode == "MT" ? "grey" : "",
   },
 });

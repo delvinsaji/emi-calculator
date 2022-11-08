@@ -8,8 +8,17 @@ import {
 import { StyleSheet } from "react-native";
 import Globalstyle from "../Global";
 import quotes from "../Quotes";
+import { useState } from "react";
 
 export default function EMI() {
+  const [amount, setAmount] = useState("");
+  const [interest, setInterest] = useState("");
+  const [tenor, setTenor] = useState("");
+  const [mode, setMode] = useState("");
+  const [emi, setEmi] = useState("");
+  const [total, setTotal] = useState("");
+  const [totalint, setTotalint] = useState("");
+
   return (
     <SafeAreaView style={Globalstyle.container}>
       <View style={styles.quotebox}>
@@ -18,16 +27,63 @@ export default function EMI() {
         </Text>
       </View>
       <Text style={styles.inputhead}>Loan Amount</Text>
-      <TextInput style={styles.input}></TextInput>
+      <TextInput
+        style={styles.input}
+        value={amount}
+        onChange={(e) => {
+          setAmount(e);
+        }}
+      ></TextInput>
       <Text style={styles.inputhead}>Rate of Interest</Text>
-      <TextInput style={styles.input}></TextInput>
+      <TextInput
+        style={styles.input}
+        value={interest}
+        onChange={(e) => {
+          setInterest(e);
+        }}
+      ></TextInput>
       <Text style={styles.inputhead}>Tenor/Duration</Text>
-      <TextInput style={styles.input}></TextInput>
+      <View style={styles.tenor}>
+        <TextInput
+          style={styles.input}
+          value={tenor}
+          onChange={(e) => {
+            setTenor(e);
+          }}
+        ></TextInput>
+        <View>
+          <Text>YR</Text>
+        </View>
+        <View>
+          <Text>MT</Text>
+        </View>
+      </View>
       <View style={styles.butview}>
-        <TouchableOpacity style={[styles.but1, styles.but]}>
+        <TouchableOpacity
+          style={[styles.but1, styles.but]}
+          onPress={() => {
+            if ((amount === "") | (tenor === "") | (interest === "")) {
+              alert("Please fill the given details");
+            } else {
+              let a = (interest * 0.01) / 12;
+              setEmi(
+                amount *
+                  a *
+                  (Math.pow(1 + a, tenor) / (Math.pow(1 + a, tenor) - 1))
+              );
+            }
+          }}
+        >
           <Text>CALCULATE</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.but2, styles.but]}>
+        <TouchableOpacity
+          style={[styles.but2, styles.but]}
+          onPress={() => {
+            setAmount("");
+            setTenor("");
+            setInterest("");
+          }}
+        >
           <Text>RESET</Text>
         </TouchableOpacity>
       </View>
@@ -59,15 +115,20 @@ const styles = StyleSheet.create({
     marginRight: 20,
     borderColor: "grey",
     fontSize: 20,
+    marginBottom: 10,
   },
   inputhead: {
     margin: 20,
+    marginTop: 10,
   },
   quote: {
     margin: 25,
     textAlign: "center",
   },
   quotebox: {
-    height: 120,
+    height: 110,
+  },
+  tenor: {
+    flexDirection: "row",
   },
 });

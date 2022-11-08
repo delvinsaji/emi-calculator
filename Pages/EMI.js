@@ -1,16 +1,22 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
 import { StyleSheet } from "react-native";
 import Globalstyle from "../Global";
 
 export default function EMI() {
   return (
-    <View style={Globalstyle.container}>
-      <Text>Loan Amount</Text>
-      <TextInput></TextInput>
-      <Text>Rate of Interest</Text>
-      <TextInput></TextInput>
-      <Text>Tenor/Duration</Text>
-      <TextInput></TextInput>
+    <SafeAreaView style={Globalstyle.container}>
+      <Text style={styles.inputhead}>Loan Amount</Text>
+      <TextInput style={styles.input}></TextInput>
+      <Text style={styles.inputhead}>Rate of Interest</Text>
+      <TextInput style={styles.input}></TextInput>
+      <Text style={styles.inputhead}>Tenor/Duration</Text>
+      <TextInput style={styles.input}></TextInput>
       <View style={styles.butview}>
         <TouchableOpacity style={[styles.but1, styles.but]}>
           <Text>CALCULATE</Text>
@@ -19,7 +25,7 @@ export default function EMI() {
           <Text>RESET</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -38,5 +44,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+  },
+  input: {
+    borderBottomWidth: 2,
+    paddingBottom: 5,
+    marginLeft: 20,
+    marginRight: 20,
+    borderColor: "grey",
+    fontSize: 20,
+  },
+  inputhead: {
+    margin: 20,
   },
 });

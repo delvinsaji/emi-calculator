@@ -85,6 +85,8 @@ export default function EMI() {
                 amount * a * (Math.pow(1 + a, ten) / (Math.pow(1 + a, ten) - 1))
               );
             }
+            setTotal(amount + emi * ten);
+            setTotalint(total - amount);
             setState(true);
           }}
         >

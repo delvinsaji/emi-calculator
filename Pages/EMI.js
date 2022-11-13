@@ -46,37 +46,43 @@ export default function EMI() {
       <Text style={styles.inputhead}>Tenor/Duration</Text>
       <View style={styles.tenor}>
         <TextInput
-          style={styles.input}
+          style={[styles.input, { flex: 0.9 }]}
           value={tenor}
           onChange={(e) => {
             setTenor(e);
           }}
         ></TextInput>
         <TouchableOpacity
-          style={styles.mode1}
+          style={[
+            styles.mode1,
+            { backgroundColor: mode == "YR" ? "grey" : "rgba(52,52,52,0)" },
+          ]}
           onPress={() => {
             setMode("YR");
           }}
         >
-          <Text>YR</Text>
+          <Text style={{ fontSize: 20 }}>YR</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.mode2}
+          style={[
+            styles.mode2,
+            { backgroundColor: mode == "MT" ? "grey" : "rgba(52,52,52,0)" },
+          ]}
           onPress={() => {
             setMode("MT");
           }}
         >
-          <Text>MT</Text>
+          <Text style={{ fontSize: 20 }}>MT</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.butview}>
         <TouchableOpacity
           style={[styles.but1, styles.but]}
           onPress={() => {
+            let ten = tenor;
             if ((amount === "") | (tenor === "") | (interest === "")) {
               alert("Please fill the given details");
             } else {
-              let ten = tenor;
               if (mode == "YR") {
                 let ten = tenor * 12;
               }
@@ -84,10 +90,10 @@ export default function EMI() {
               setEmi(
                 amount * a * (Math.pow(1 + a, ten) / (Math.pow(1 + a, ten) - 1))
               );
+              setTotal(amount + emi * ten);
+              setTotalint(total - amount);
+              setState(true);
             }
-            setTotal(amount + emi * ten);
-            setTotalint(total - amount);
-            setState(true);
           }}
         >
           <Text>CALCULATE</Text>
@@ -167,9 +173,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   mode1: {
-    backgroundColor: mode == "YR" ? "grey" : "",
+    marginRight: 10,
   },
-  mode2: {
-    backgroundColor: mode == "MT" ? "grey" : "",
-  },
+  mode2: {},
 });

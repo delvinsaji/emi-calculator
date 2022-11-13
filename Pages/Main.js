@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import Mainpage from "./Mainpage";
 import EMI from "./EMI";
-import { View } from "react-native";
+
 const Stack = createStackNavigator();
 
 export default function Main() {

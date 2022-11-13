@@ -11,6 +11,9 @@ import quotes from "../Quotes";
 import { useState } from "react";
 
 export default function EMI() {
+  const [quote, setQuote] = useState(
+    quotes[Math.floor(Math.random(0, 1) * quotes.length)]
+  );
   const [amount, setAmount] = useState("");
   const [interest, setInterest] = useState("");
   const [tenor, setTenor] = useState("");
@@ -23,15 +26,14 @@ export default function EMI() {
   return (
     <SafeAreaView style={Globalstyle.container}>
       <View style={styles.quotebox}>
-        <Text style={styles.quote}>
-          {quotes[Math.floor(Math.random(0, 1) * quotes.length)]}
-        </Text>
+        <Text style={styles.quote}>{quote}</Text>
       </View>
       <Text style={styles.inputhead}>Loan Amount</Text>
       <TextInput
         style={styles.input}
         value={amount}
-        onChange={(e) => {
+        onChangeText={(e) => {
+          console.log(e);
           setAmount(e);
         }}
       ></TextInput>
@@ -39,7 +41,7 @@ export default function EMI() {
       <TextInput
         style={styles.input}
         value={interest}
-        onChange={(e) => {
+        onChangeText={(e) => {
           setInterest(e);
         }}
       ></TextInput>
@@ -48,7 +50,7 @@ export default function EMI() {
         <TextInput
           style={[styles.input, { flex: 0.9 }]}
           value={tenor}
-          onChange={(e) => {
+          onChangeText={(e) => {
             setTenor(e);
           }}
         ></TextInput>
@@ -90,8 +92,9 @@ export default function EMI() {
               setEmi(
                 amount * a * (Math.pow(1 + a, ten) / (Math.pow(1 + a, ten) - 1))
               );
+              console.log(amount, total);
               setTotal(amount + emi * ten);
-              setTotalint(total - amount);
+              setTotalint(amount - total);
               setState(true);
             }
           }}
@@ -112,12 +115,24 @@ export default function EMI() {
       </View>
       {state ? (
         <View style={styles.result}>
-          <Text>EMI(Monthly Payment)</Text>
-          <Text>{emi}</Text>
-          <Text>Total Payment</Text>
-          <Text>{total}</Text>
-          <Text>Total Interest</Text>
-          <Text>{totalint}</Text>
+          <Text
+            style={[styles.resulttext, { fontWeight: "bold", fontSize: 17 }]}
+          >
+            EMI(Monthly Payment)
+          </Text>
+          <Text style={styles.resulttext}>{emi}</Text>
+          <Text
+            style={[styles.resulttext, { fontWeight: "bold", fontSize: 17 }]}
+          >
+            Total Payment
+          </Text>
+          <Text style={styles.resulttext}>{total}</Text>
+          <Text
+            style={[styles.resulttext, { fontWeight: "bold", fontSize: 17 }]}
+          >
+            Total Interest
+          </Text>
+          <Text style={styles.resulttext}>{totalint}</Text>
         </View>
       ) : (
         ""
@@ -168,12 +183,19 @@ const styles = StyleSheet.create({
   },
   result: {
     textAlign: "center",
-    borderRadius: 5,
-    backgroundColor: "blue",
+    borderRadius: 10,
+    backgroundColor: "#00539CFF",
     color: "white",
+    margin: 15,
+    marginTop: 5,
   },
   mode1: {
     marginRight: 10,
   },
   mode2: {},
+  resulttext: {
+    color: "white",
+    textAlign: "center",
+    marginTop: 5,
+  },
 });

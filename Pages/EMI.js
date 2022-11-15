@@ -17,13 +17,11 @@ export default function EMI() {
   const [state, setState] = useState(false);
 
   function calculation() {
-    console.log(emi, total, totalint);
     let ten = 0;
     ten = tenor;
     if ((amount === "") | (tenor === "") | (interest === "")) {
       alert("Please fill the given details");
     } else {
-      console.log(mode);
       if (mode === "YR") {
         ten = tenor * 12;
       }

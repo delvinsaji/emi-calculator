@@ -4,7 +4,8 @@ import Globalstyle from "../Global";
 import { useState } from "react";
 import Input from "../Main Components/Input";
 import Quote from "../Main Components/Quote";
-
+import Reset from "../Main Components/Reset";
+import Calculate from "../Main Components/Calculate";
 export default function EMI() {
   const [amount, setAmount] = useState("");
   const [interest, setInterest] = useState("");
@@ -15,6 +16,37 @@ export default function EMI() {
   const [totalint, setTotalint] = useState("");
   const [state, setState] = useState(false);
 
+  function calculation() {
+    setTotal("");
+    setTotalint("");
+    setEmi("");
+    let ten = 0;
+    ten = tenor;
+    if ((amount === "") | (tenor === "") | (interest === "")) {
+      alert("Please fill the given details");
+    } else {
+      console.log(mode);
+      if (mode === "YR") {
+        ten = tenor * 12;
+      }
+      let a = (interest * 0.01) / 12;
+      setEmi(
+        Math.round(
+          amount * a * (Math.pow(1 + a, ten) / (Math.pow(1 + a, ten) - 1))
+        )
+      );
+      setTotalint(Math.round((Number(emi) - amount / ten) * ten));
+      setTotal(Math.round(Number(amount) + Number(totalint)));
+      setState(true);
+    }
+  }
+
+  function reset() {
+    setAmount("");
+    setTenor("");
+    setInterest("");
+    setState(false);
+  }
   return (
     <SafeAreaView style={Globalstyle.container}>
       <Quote></Quote>
@@ -54,40 +86,8 @@ export default function EMI() {
         </TouchableOpacity>
       </View>
       <View style={styles.butview}>
-        <TouchableOpacity
-          style={[styles.but1, styles.but]}
-          onPress={() => {
-            let ten = tenor;
-            if ((amount === "") | (tenor === "") | (interest === "")) {
-              alert("Please fill the given details");
-            } else {
-              if (mode == "YR") {
-                let ten = tenor * 12;
-              }
-              let a = (interest * 0.01) / 12;
-              setEmi(
-                amount * a * (Math.pow(1 + a, ten) / (Math.pow(1 + a, ten) - 1))
-              );
-              console.log(amount, total);
-              setTotal(amount + emi * ten);
-              setTotalint(amount - total);
-              setState(true);
-            }
-          }}
-        >
-          <Text>CALCULATE</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.but2, styles.but]}
-          onPress={() => {
-            setAmount("");
-            setTenor("");
-            setInterest("");
-            setState(false);
-          }}
-        >
-          <Text>RESET</Text>
-        </TouchableOpacity>
+        <Calculate calculation={calculation}></Calculate>
+        <Reset reset={reset}></Reset>
       </View>
       {state ? (
         <View style={styles.result}>
@@ -118,16 +118,6 @@ export default function EMI() {
 }
 
 const styles = StyleSheet.create({
-  but1: { backgroundColor: "blue" },
-  but2: { backgroundColor: "grey" },
-  but: {
-    margin: 15,
-    width: 150,
-    alignItems: "center",
-    height: 50,
-    justifyContent: "center",
-    borderRadius: 10,
-  },
   butview: {
     flexDirection: "row",
     alignItems: "center",
@@ -147,8 +137,17 @@ const styles = StyleSheet.create({
   },
   mode1: {
     marginRight: 10,
+    marginTop: 30,
+    width: 50,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  mode2: {},
+  mode2: {
+    marginTop: 30,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 50,
+  },
   resulttext: {
     color: "white",
     textAlign: "center",

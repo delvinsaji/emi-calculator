@@ -17,9 +17,7 @@ export default function EMI() {
   const [state, setState] = useState(false);
 
   function calculation() {
-    setTotal("");
-    setTotalint("");
-    setEmi("");
+    console.log(emi, total, totalint);
     let ten = 0;
     ten = tenor;
     if ((amount === "") | (tenor === "") | (interest === "")) {
@@ -30,13 +28,14 @@ export default function EMI() {
         ten = tenor * 12;
       }
       let a = (interest * 0.01) / 12;
-      setEmi(
-        Math.round(
-          amount * a * (Math.pow(1 + a, ten) / (Math.pow(1 + a, ten) - 1))
-        )
+      let emiv = Math.round(
+        amount * a * (Math.pow(1 + a, ten) / (Math.pow(1 + a, ten) - 1))
       );
-      setTotalint(Math.round((Number(emi) - amount / ten) * ten));
-      setTotal(Math.round(Number(amount) + Number(totalint)));
+      let totalintv = Math.round((Number(emiv) - amount / ten) * ten);
+      let totalv = Math.round(Number(amount) + Number(totalintv));
+      setEmi(emiv);
+      setTotalint(totalintv);
+      setTotal(totalv);
       setState(true);
     }
   }

@@ -32,11 +32,10 @@ export default function EMI() {
         ten = tenor * 12;
       }
       let a = (interest * 0.01) / 12;
-      let emiv = Math.round(
-        amount * a * (Math.pow(1 + a, ten) / (Math.pow(1 + a, ten) - 1))
-      );
-      let totalintv = Math.round((Number(emiv) - amount / ten) * ten);
-      let totalv = Math.round(Number(amount) + Number(totalintv));
+      let emiv =
+        amount * a * (Math.pow(1 + a, ten) / (Math.pow(1 + a, ten) - 1));
+      let totalintv = (Number(emiv) - amount / ten) * ten;
+      let totalv = Number(amount) + Number(totalintv);
       setEmi(emiv);
       setTotalint(totalintv);
       setTotal(totalv);

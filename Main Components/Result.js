@@ -14,7 +14,9 @@ export default function Result(props) {
             >
               {obj}
             </Text>
-            <Text style={styles.resulttext}>{props.res[count]}</Text>
+            <Text style={styles.resulttext}>
+              {Math.round(props.res[count])}
+            </Text>
           </View>
         );
       })}

@@ -8,7 +8,7 @@ export default function Result(props) {
       {props.head.map((obj) => {
         count = count + 1;
         return (
-          <View>
+          <View key={obj}>
             <Text
               style={[styles.resulttext, { fontWeight: "bold", fontSize: 17 }]}
             >

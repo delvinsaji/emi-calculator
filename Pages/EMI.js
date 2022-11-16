@@ -7,6 +7,7 @@ import Quote from "../Main Components/Quote";
 import Reset from "../Main Components/Reset";
 import Calculate from "../Main Components/Calculate";
 import Tenor from "../Main Components/Tenor";
+import Result from "../Main Components/Result";
 
 export default function EMI() {
   const [amount, setAmount] = useState("");
@@ -17,6 +18,9 @@ export default function EMI() {
   const [total, setTotal] = useState("");
   const [totalint, setTotalint] = useState("");
   const [state, setState] = useState(false);
+
+  const arrhead = ["EMI(Monthly Payment)", "Total Payment", "Total Interest"];
+  const arr = [emi, total, totalint];
 
   function calculation() {
     let ten = 0;
@@ -67,30 +71,7 @@ export default function EMI() {
         <Calculate calculation={calculation}></Calculate>
         <Reset reset={reset}></Reset>
       </View>
-      {state ? (
-        <View style={styles.result}>
-          <Text
-            style={[styles.resulttext, { fontWeight: "bold", fontSize: 17 }]}
-          >
-            EMI(Monthly Payment)
-          </Text>
-          <Text style={styles.resulttext}>{emi}</Text>
-          <Text
-            style={[styles.resulttext, { fontWeight: "bold", fontSize: 17 }]}
-          >
-            Total Payment
-          </Text>
-          <Text style={styles.resulttext}>{total}</Text>
-          <Text
-            style={[styles.resulttext, { fontWeight: "bold", fontSize: 17 }]}
-          >
-            Total Interest
-          </Text>
-          <Text style={styles.resulttext}>{totalint}</Text>
-        </View>
-      ) : (
-        ""
-      )}
+      {state ? <Result head={arrhead} res={arr}></Result> : ""}
     </SafeAreaView>
   );
 }
@@ -104,19 +85,5 @@ const styles = StyleSheet.create({
   },
   tenor: {
     flexDirection: "row",
-  },
-  result: {
-    textAlign: "center",
-    borderRadius: 10,
-    backgroundColor: "#00539CFF",
-    color: "white",
-    margin: 15,
-    marginTop: 5,
-  },
-
-  resulttext: {
-    color: "white",
-    textAlign: "center",
-    marginTop: 5,
   },
 });

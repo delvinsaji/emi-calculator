@@ -18,7 +18,9 @@ export default function LoanAmount() {
   const [state, setState] = useState(false);
 
   function calculate() {}
-  function reset() {}
+  function reset() {
+    setState("false");
+  }
 
   return (
     <SafeAreaView style={Globalstyle.container}>

@@ -1,8 +1,6 @@
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
 export default function Subcomp({ nav, name }) {
-  console.log(nav);
-
   return (
     <TouchableOpacity
       style={styles.box}

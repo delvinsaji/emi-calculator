@@ -17,7 +17,16 @@ export default function LoanAmount() {
   const [totalint, setTotalint] = useState("");
   const [state, setState] = useState(false);
 
-  function calculate() {}
+  function calculate() {
+    let ten = tenor;
+    if (mode == "YR") {
+      ten = tenor * 12;
+    }
+    if ((interest == "") | (tenor == "") | (emi == "")) {
+      alert("Please fill all the details");
+    } else {
+    }
+  }
   function reset() {
     setState("false");
   }

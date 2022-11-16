@@ -6,6 +6,8 @@ import Input from "../Main Components/Input";
 import Quote from "../Main Components/Quote";
 import Reset from "../Main Components/Reset";
 import Calculate from "../Main Components/Calculate";
+import Tenor from "../Main Components/Tenor";
+
 export default function EMI() {
   const [amount, setAmount] = useState("");
   const [interest, setInterest] = useState("");
@@ -59,28 +61,7 @@ export default function EMI() {
           head={"Tenor/Duration"}
           statevalue={tenor}
         ></Input>
-        <TouchableOpacity
-          style={[
-            styles.mode1,
-            { backgroundColor: mode == "YR" ? "grey" : "rgba(52,52,52,0)" },
-          ]}
-          onPress={() => {
-            setMode("YR");
-          }}
-        >
-          <Text style={{ fontSize: 20 }}>YR</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.mode2,
-            { backgroundColor: mode == "MT" ? "grey" : "rgba(52,52,52,0)" },
-          ]}
-          onPress={() => {
-            setMode("MT");
-          }}
-        >
-          <Text style={{ fontSize: 20 }}>MT</Text>
-        </TouchableOpacity>
+        <Tenor setMode={setMode} mode={mode}></Tenor>
       </View>
       <View style={styles.butview}>
         <Calculate calculation={calculation}></Calculate>
@@ -132,19 +113,7 @@ const styles = StyleSheet.create({
     margin: 15,
     marginTop: 5,
   },
-  mode1: {
-    marginRight: 10,
-    marginTop: 30,
-    width: 50,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  mode2: {
-    marginTop: 30,
-    alignItems: "center",
-    justifyContent: "center",
-    width: 50,
-  },
+
   resulttext: {
     color: "white",
     textAlign: "center",

@@ -5,7 +5,7 @@ import { useState } from "react";
 import Input from "../Main Components/Input";
 import Reset from "../Main Components/Reset";
 import Calculate from "../Main Components/Calculate";
-import Tenor from "../Main Components/Tenor";
+import TenorComp from "../Main Components/TenorComp";
 import Result from "../Main Components/Result";
 
 export default function LoanAmount() {
@@ -56,14 +56,12 @@ export default function LoanAmount() {
         state={setInterest}
         statevalue={interest}
       ></Input>
-      <View style={styles.tenor}>
-        <Input
-          head={"Tenor/Duration"}
-          state={setTenor}
-          statevalue={tenor}
-        ></Input>
-        <Tenor setMode={setMode} mode={mode}></Tenor>
-      </View>
+      <TenorComp
+        mode={mode}
+        setMode={setMode}
+        tenor={tenor}
+        setTenor={setTenor}
+      ></TenorComp>
       <View style={styles.buttons}>
         <Calculate calculation={calculate}></Calculate>
         <Reset reset={reset}></Reset>
@@ -74,9 +72,6 @@ export default function LoanAmount() {
 }
 
 const styles = StyleSheet.create({
-  tenor: {
-    flexDirection: "row",
-  },
   buttons: {
     flexDirection: "row",
     marginTop: 20,

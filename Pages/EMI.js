@@ -6,7 +6,7 @@ import Input from "../Main Components/Input";
 import Quote from "../Main Components/Quote";
 import Reset from "../Main Components/Reset";
 import Calculate from "../Main Components/Calculate";
-import Tenor from "../Main Components/Tenor";
+import TenorComp from "../Main Components/TenorComp";
 import Result from "../Main Components/Result";
 
 export default function EMI() {
@@ -58,14 +58,12 @@ export default function EMI() {
         head={"Interest Rate"}
         statevalue={interest}
       ></Input>
-      <View style={styles.tenor}>
-        <Input
-          state={setTenor}
-          head={"Tenor/Duration"}
-          statevalue={tenor}
-        ></Input>
-        <Tenor setMode={setMode} mode={mode}></Tenor>
-      </View>
+      <TenorComp
+        mode={mode}
+        setMode={setMode}
+        tenor={tenor}
+        setTenor={setTenor}
+      ></TenorComp>
       <View style={styles.butview}>
         <Calculate calculation={calculation}></Calculate>
         <Reset reset={reset}></Reset>
@@ -81,8 +79,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 30,
-  },
-  tenor: {
-    flexDirection: "row",
   },
 });

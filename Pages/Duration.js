@@ -8,13 +8,11 @@ import Calculate from "../Main Components/Calculate";
 import Reset from "../Main Components/Reset";
 import Result from "../Main Components/Result";
 
-export default function InterestRate() {
+export default function Duration() {
   const [emi, setEmi] = useState("");
   const [loan, setLoan] = useState("");
-  const [mode, setMode] = useState("MT");
-  const [tenor, setTenor] = useState();
   const [state, setState] = useState(false);
-
+  const [interest, setInterest] = useState("");
   function calculation() {}
 
   function reset() {}
@@ -24,12 +22,11 @@ export default function InterestRate() {
       <Quote></Quote>
       <Input head={"EMI Amount"} statevalue={emi} state={setEmi}></Input>
       <Input head={"Loan Amount"} statevalue={loan} state={setLoan}></Input>
-      <TenorComp
-        mode={mode}
-        setMode={setMode}
-        tenor={tenor}
-        setTenor={setTenor}
-      ></TenorComp>
+      <Input
+        head={"Interest Rate"}
+        statevalue={interest}
+        state={setInterest}
+      ></Input>
       <View style={styles.buttons}>
         <Calculate calculation={calculation}></Calculate>
         <Reset reset={reset}></Reset>
